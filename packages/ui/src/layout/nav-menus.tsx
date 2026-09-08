@@ -23,10 +23,7 @@ export function NavMenus({
   return (
     <>
       {menus.map((menu) => (
-        <SidebarGroup
-          key={menu.label}
-          className="group-data-[collapsible=icon]:hidden"
-        >
+        <SidebarGroup key={menu.label}>
           <SidebarGroupLabel>{menu.label}</SidebarGroupLabel>
           <SidebarMenu>
             {menu.items.map((item) => (

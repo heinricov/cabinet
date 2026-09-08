@@ -68,7 +68,7 @@ export function LoginForm() {
   }
 
   return (
-    <section className="flex w-full items-center justify-center bg-background px-6 py-12 text-foreground">
+    <section className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-12 text-foreground">
       <Toaster />
       <Card className="w-full max-w-sm">
         <CardHeader className="items-center text-center">
