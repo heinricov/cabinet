@@ -1,15 +1,8 @@
-import { Geist, Geist_Mono, Oxanium } from "next/font/google"
-
 import "@workspace/ui/globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@workspace/ui/lib/utils";
-
-const oxanium = Oxanium({subsets:['latin'],variable:'--font-sans'})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
+import { fontMono, oxanium } from "@/components/providers/font-provider"
+import { ThemeProvider } from "@/components/providers/theme-provider"
+import { cn } from "@workspace/ui/lib/utils"
+import { AppLayout } from "@workspace/ui/layout/app-layout"
 
 export default function RootLayout({
   children,
@@ -20,10 +13,17 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={cn("antialiased", fontMono.variable, "font-sans", oxanium.variable)}
+      className={cn(
+        "antialiased",
+        fontMono.variable,
+        "font-sans",
+        oxanium.variable
+      )}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <AppLayout>{children}</AppLayout>
+        </ThemeProvider>
       </body>
     </html>
   )
