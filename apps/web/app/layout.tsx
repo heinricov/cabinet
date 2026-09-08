@@ -2,7 +2,6 @@ import "@workspace/ui/globals.css"
 import { fontMono, oxanium } from "@/components/providers/font-provider"
 import { ThemeProvider } from "@/components/providers/theme-provider"
 import { cn } from "@workspace/ui/lib/utils"
-import { AppLayout } from "@workspace/ui/layout/app-layout"
 
 export default function RootLayout({
   children,
@@ -21,9 +20,7 @@ export default function RootLayout({
       )}
     >
       <body>
-        <ThemeProvider>
-          <AppLayout>{children}</AppLayout>
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

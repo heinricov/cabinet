@@ -1,3 +1,5 @@
+"use client"
+
 import { AppSidebar } from "@workspace/ui/layout/app-sidebar"
 import {
   Breadcrumb,
@@ -15,18 +17,28 @@ import {
 } from "@workspace/ui/components/sidebar"
 import { TooltipProvider } from "@workspace/ui/components/tooltip"
 
-export function AppLayout({ children }: { children: React.ReactNode }) {
+export function AppLayout({
+  user,
+  navCollaps,
+  navMenus,
+  children,
+}: {
+  user: React.ComponentProps<typeof AppSidebar>["user"]
+  navCollaps: React.ComponentProps<typeof AppSidebar>["navCollaps"]
+  navMenus: React.ComponentProps<typeof AppSidebar>["navMenus"]
+  children: React.ReactNode
+}) {
   return (
     <TooltipProvider>
       <SidebarProvider>
-        <AppSidebar />
+        <AppSidebar user={user} navCollaps={navCollaps} navMenus={navMenus} />
         <SidebarInset>
-          <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <header className="sticky top-0 flex h-12 shrink-0 items-center gap-2 border-b bg-background transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
             <div className="flex items-center gap-2 px-4">
               <SidebarTrigger className="-ml-1" />
               <Separator
                 orientation="vertical"
-                className="mr-2 data-[orientation=vertical]:h-4"
+                className="mr-2 data-[orientation=vertical]:h-8"
               />
               <Breadcrumb>
                 <BreadcrumbList>
