@@ -1,4 +1,4 @@
-import ProfilePage from "@workspace/ui/components/profile-page"
+import { ProfilePage } from "@workspace/ui/profiles/profile-page"
 
 export default function Page() {
   return <ProfilePage />
