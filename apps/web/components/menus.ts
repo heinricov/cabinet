@@ -30,12 +30,12 @@ export const data = {
       items: [
         {
           name: "Users",
-          url: "/dashboard",
+          url: "/dashboard/data/users",
           icon: Users,
         },
         {
           name: "Roles",
-          url: "/profile",
+          url: "/dashboard/data/roles",
           icon: UserStar,
         },
       ],
