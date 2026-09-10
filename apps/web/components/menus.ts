@@ -16,101 +16,24 @@ export const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  navMain: [
+  Menus: [
     {
-      label: "Platform",
+      label: "Menus",
       items: [
         {
-          title: "Playground",
-          url: "#",
-          icon: TerminalSquareIcon,
-          isActive: true,
-          items: [
-            {
-              title: "History",
-              url: "#",
-            },
-            {
-              title: "Starred",
-              url: "#",
-            },
-            {
-              title: "Settings",
-              url: "#",
-            },
-          ],
+          name: "Dashboard",
+          url: "/dashboard",
+          icon: LayoutDashboard,
         },
         {
-          title: "Models",
-          url: "#",
-          icon: BotIcon,
-          items: [
-            {
-              title: "Genesis",
-              url: "#",
-            },
-            {
-              title: "Explorer",
-              url: "#",
-            },
-            {
-              title: "Quantum",
-              url: "#",
-            },
-          ],
-        },
-        {
-          title: "Documentation",
-          url: "#",
-          icon: BookOpenIcon,
-          items: [
-            {
-              title: "Introduction",
-              url: "#",
-            },
-            {
-              title: "Get Started",
-              url: "#",
-            },
-            {
-              title: "Tutorials",
-              url: "#",
-            },
-            {
-              title: "Changelog",
-              url: "#",
-            },
-          ],
-        },
-        {
-          title: "Settings",
-          url: "#",
-          icon: Settings2Icon,
-          items: [
-            {
-              title: "General",
-              url: "#",
-            },
-            {
-              title: "Team",
-              url: "#",
-            },
-            {
-              title: "Billing",
-              url: "#",
-            },
-            {
-              title: "Limits",
-              url: "#",
-            },
-          ],
+          name: "Profile",
+          url: "/profile",
+          icon: User,
         },
       ],
     },
-  ],
-  projects: [
     {
-      label: "Menus",
+      label: "Menus Data",
       items: [
         {
           name: "Dashboard",

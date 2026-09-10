@@ -24,7 +24,7 @@ export function AppLayout({
   children,
 }: {
   user: React.ComponentProps<typeof AppSidebar>["user"]
-  navCollaps: React.ComponentProps<typeof AppSidebar>["navCollaps"]
+  navCollaps?: React.ComponentProps<typeof AppSidebar>["navCollaps"]
   navMenus: React.ComponentProps<typeof AppSidebar>["navMenus"]
   children: React.ReactNode
 }) {

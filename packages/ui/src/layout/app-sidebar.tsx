@@ -16,7 +16,7 @@ import {
 
 type Props = React.ComponentProps<typeof Sidebar> & {
   user: React.ComponentProps<typeof NavUser>["user"]
-  navCollaps: React.ComponentProps<typeof NavCollaps>["menus"]
+  navCollaps?: React.ComponentProps<typeof NavCollaps>["menus"]
   navMenus: React.ComponentProps<typeof NavMenus>["menus"]
 }
 

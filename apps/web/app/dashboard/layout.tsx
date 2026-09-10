@@ -5,11 +5,7 @@ import { data } from "@/components/menus"
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <AppLayout
-      user={data.user}
-      navMenus={data.projects}
-      navCollaps={data.navMain}
-    >
+    <AppLayout user={data.user} navMenus={data.Menus}>
       {children}
     </AppLayout>
   )
