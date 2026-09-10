@@ -20,7 +20,7 @@ export const data = {
         },
         {
           name: "Profile",
-          url: "/dashboard/profile",
+          url: "/profile",
           icon: User,
         },
       ],
