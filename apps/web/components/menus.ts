@@ -1,13 +1,6 @@
 "use client"
 
-import {
-  TerminalSquareIcon,
-  BotIcon,
-  BookOpenIcon,
-  Settings2Icon,
-  LayoutDashboard,
-  User,
-} from "lucide-react"
+import { LayoutDashboard, User, Users, UserStar } from "lucide-react"
 
 // This is sample data.
 export const data = {
@@ -27,7 +20,7 @@ export const data = {
         },
         {
           name: "Profile",
-          url: "/profile",
+          url: "/dashboard/profile",
           icon: User,
         },
       ],
@@ -36,14 +29,14 @@ export const data = {
       label: "Menus Data",
       items: [
         {
-          name: "Dashboard",
+          name: "Users",
           url: "/dashboard",
-          icon: LayoutDashboard,
+          icon: Users,
         },
         {
-          name: "Profile",
+          name: "Roles",
           url: "/profile",
-          icon: User,
+          icon: UserStar,
         },
       ],
     },
