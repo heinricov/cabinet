@@ -48,12 +48,21 @@ export default function ForgotPasswrdForm() {
                 Check your inbox
               </CardTitle>
               <CardDescription className="text-sm">
-                If an account exists for{" "}
-                <span className="font-medium text-foreground">{email}</span>,
-                we&apos;ve sent a link to reset your password.
+                We An OTP code has been sent to reset your password, please
+                check your email.
+                <span className="font-medium text-foreground">{email}</span>
               </CardDescription>
             </CardHeader>
             <OtpCode />
+            <CardFooter className="flex text-sm text-muted-foreground">
+              <p className="gap-2">
+                {" "}
+                If you encounter any issues while logging in,
+                <a className="ml-2 text-primary" href="/dashboard">
+                  please contact us.
+                </a>
+              </p>
+            </CardFooter>
           </>
         ) : (
           <>
