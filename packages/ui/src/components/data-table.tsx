@@ -71,7 +71,10 @@ const TABLE_FEATURES = tableFeatures({
 
 export type DataTableFeatures = typeof TABLE_FEATURES
 
-export type DataTableColumnDef<TData extends Record<string, any>> = ColumnDef<DataTableFeatures, TData>
+export type DataTableColumnDef<TData extends Record<string, any>> = ColumnDef<
+  DataTableFeatures,
+  TData
+>
 
 export type BulkAction = {
   label: string
@@ -90,7 +93,6 @@ export type DataTableProps<TData extends Record<string, any>> = {
   data: TData[]
   columns: DataTableColumnDef<TData>[]
   title: string
-  titleIcon?: React.ReactNode
   subtitle?: string
   searchPlaceholder?: string
   searchColumnId?: string
@@ -130,7 +132,10 @@ export function SortableHeader({
   column,
   label,
 }: {
-  column: { getIsSorted: () => false | "asc" | "desc"; toggleSorting: (desc: boolean) => void }
+  column: {
+    getIsSorted: () => false | "asc" | "desc"
+    toggleSorting: (desc: boolean) => void
+  }
   label: string
 }) {
   return (
@@ -149,7 +154,6 @@ export function DataTable<TData extends Record<string, any>>({
   data,
   columns,
   title,
-  titleIcon,
   subtitle,
   searchPlaceholder = "Search...",
   searchColumnId,
@@ -161,8 +165,9 @@ export function DataTable<TData extends Record<string, any>>({
   initialSorting = [],
 }: DataTableProps<TData>) {
   const [sorting, setSorting] = React.useState<SortingState>(initialSorting)
-  const [columnFilters, setColumnFilters] =
-    React.useState<ColumnFiltersState>([])
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  )
   const [columnVisibility, setColumnVisibility] =
     React.useState<ColumnVisibilityState>({})
   const [rowSelection, setRowSelection] = React.useState({})
@@ -202,23 +207,16 @@ export function DataTable<TData extends Record<string, any>>({
 
   return (
     <div className="flex w-full flex-col">
-      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-        <div className="flex items-center gap-3">
-          {titleIcon && (
-            <div className="flex size-9 items-center justify-center rounded-md border border-border bg-card text-muted-foreground">
-              {titleIcon}
-            </div>
+      <div className="mb-6 flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-1.5">
+          <h1 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="text-sm text-muted-foreground">{subtitle}</p>
           )}
-          <div>
-            <h1 className="font-heading text-lg leading-tight font-semibold tracking-tight">
-              {title}
-            </h1>
-            {subtitle && (
-              <p className="text-sm text-muted-foreground">{subtitle}</p>
-            )}
-          </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {searchColumnId && (
             <div className="relative">
               <Search
@@ -234,7 +232,7 @@ export function DataTable<TData extends Record<string, any>>({
                     ?.setFilterValue(event.target.value)
                 }
                 placeholder={searchPlaceholder}
-                className="h-7 w-48 pl-8 text-sm"
+                className="h-9 w-48 pl-8 text-sm"
                 aria-label={searchPlaceholder}
               />
             </div>
@@ -243,11 +241,7 @@ export function DataTable<TData extends Record<string, any>>({
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    aria-label="Toggle columns"
-                  >
+                  <Button variant="outline" aria-label="Toggle columns">
                     <Columns className="size-3.5" aria-hidden="true" />
                     View
                   </Button>
@@ -277,9 +271,11 @@ export function DataTable<TData extends Record<string, any>>({
             </DropdownMenu>
           )}
           {addButton && (
-            <Button size="sm" onClick={addButton.onClick}>
+            <Button onClick={addButton.onClick}>
               {addButton.icon && (
-                <span className="mr-1">{addButton.icon}</span>
+                <span data-icon="inline-start" aria-hidden="true">
+                  {addButton.icon}
+                </span>
               )}
               {addButton.label}
             </Button>

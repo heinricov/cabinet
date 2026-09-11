@@ -18,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu"
-import { Ellipsis, Eye, Pencil, Trash, FileText, Plus } from "lucide-react"
+import { Ellipsis, Eye, Pencil, Trash, Plus } from "lucide-react"
 
 type DocumentStatus = "Received" | "Pending" | "Verified"
 
@@ -213,7 +213,6 @@ export default function Page() {
         data={documents}
         columns={documentColumns}
         title="Document Receipt (PL-HPE)"
-        titleIcon={<FileText className="size-4" aria-hidden="true" />}
         subtitle={`${documents.length} documents`}
         searchPlaceholder="Search documents..."
         searchColumnId="dokId"

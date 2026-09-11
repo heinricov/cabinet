@@ -194,7 +194,6 @@ export default function Page() {
         data={roles}
         columns={roleColumns}
         title="Roles & Permissions"
-        titleIcon={<Shield className="size-4" aria-hidden="true" />}
         subtitle={`${roles.length} roles configured`}
         searchPlaceholder="Search roles..."
         searchColumnId="name"
