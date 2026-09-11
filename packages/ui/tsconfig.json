@@ -2,7 +2,11 @@
   "extends": "@workspace/typescript-config/react-library.json",
   "compilerOptions": {
     "paths": {
-      "@workspace/ui/*": ["./src/*"]
+      "@workspace/ui/*": ["./src/*"],
+      "next/navigation": ["./node_modules/next/navigation.d.ts"],
+      "next/link": ["./node_modules/next/link.d.ts"],
+      "next/image": ["./node_modules/next/image.d.ts"],
+      "next/router": ["./node_modules/next/router.d.ts"]
     }
   },
   "include": ["."],

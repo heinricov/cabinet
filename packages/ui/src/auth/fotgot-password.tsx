@@ -12,7 +12,8 @@ import {
 } from "@workspace/ui/components/card"
 import { Field, FieldError, FieldLabel } from "@workspace/ui/components/field"
 import { Input } from "@workspace/ui/components/input"
-import { Send, ArrowLeft } from "lucide-react"
+import { ArrowLeft, Mail } from "lucide-react"
+import { OtpCode } from "@workspace/ui/auth/otp-code"
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -41,7 +42,7 @@ export default function ForgotPasswrdForm() {
                 className="mx-auto flex size-11 items-center justify-center rounded-lg border border-border bg-muted/40"
                 aria-hidden="true"
               >
-                <Send className="size-5" />
+                <Mail className="size-5" />
               </span>
               <CardTitle className="mt-4 text-xl font-bold tracking-tight">
                 Check your inbox
@@ -52,15 +53,7 @@ export default function ForgotPasswrdForm() {
                 we&apos;ve sent a link to reset your password.
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => setSent(false)}
-              >
-                Use a different email
-              </Button>
-            </CardContent>
+            <OtpCode />
           </>
         ) : (
           <>
@@ -69,7 +62,8 @@ export default function ForgotPasswrdForm() {
                 Forgot your password?
               </CardTitle>
               <CardDescription className="text-sm">
-                Enter your email and we&apos;ll send you a reset link.
+                Enter your email, and you will receive a verification code to
+                create a new password.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -102,7 +96,7 @@ export default function ForgotPasswrdForm() {
             variant="link"
             size="sm"
             className="text-muted-foreground"
-            render={<a href="#" />}
+            render={<a href="/auth/login" />}
             nativeButton={false}
           >
             <ArrowLeft data-icon="inline-start" aria-hidden="true" />
