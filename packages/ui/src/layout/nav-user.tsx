@@ -12,6 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu"
 import {
@@ -20,14 +23,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@workspace/ui/components/sidebar"
-import {
-  ChevronsUpDownIcon,
-  SparklesIcon,
-  BadgeCheckIcon,
-  CreditCardIcon,
-  BellIcon,
-  LogOutIcon,
-} from "lucide-react"
+import { ChevronsUpDownIcon, LogOutIcon, Check } from "lucide-react"
+import { useTheme } from "next-themes"
 
 export function NavUser({
   user,
@@ -39,6 +36,7 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
+  const { theme, setTheme } = useTheme()
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -82,27 +80,32 @@ export function NavUser({
               </DropdownMenuLabel>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <SparklesIcon />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheckIcon />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCardIcon />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <BellIcon />
-                Notifications
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
+              <DropdownMenuSubContent className="w-40">
+                <DropdownMenuItem onClick={() => setTheme("light")} className="justify-between">
+                  Light
+                  <Check
+                    className={theme === "light" ? "size-4" : "size-0"}
+                    aria-hidden="true"
+                  />
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")} className="justify-between">
+                  Dark
+                  <Check
+                    className={theme === "dark" ? "size-4" : "size-0"}
+                    aria-hidden="true"
+                  />
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")} className="justify-between">
+                  System
+                  <Check
+                    className={theme === "system" ? "size-4" : "size-0"}
+                    aria-hidden="true"
+                  />
+                </DropdownMenuItem>
+              </DropdownMenuSubContent>
+            </DropdownMenuSub>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOutIcon />

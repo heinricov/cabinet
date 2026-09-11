@@ -8,10 +8,11 @@ import {
 } from "@workspace/ui/components/breadcrumb"
 import { Separator } from "@workspace/ui/components/separator"
 import { SidebarTrigger } from "@workspace/ui/components/sidebar"
+import { AppNotifications } from "@workspace/ui/layout/app-notifications"
 
 export function AppHeader() {
   return (
-    <header className="sticky top-0 z-10 flex h-12 w-full shrink-0 items-center gap-2 border-b bg-background transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+    <header className="sticky top-0 z-10 flex h-14 w-full shrink-0 items-center justify-between gap-2 border-b bg-background transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
       <div className="flex items-center gap-2 px-4">
         <SidebarTrigger className="-ml-1" />
         <Separator
@@ -30,6 +31,7 @@ export function AppHeader() {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
+      <AppNotifications />
     </header>
   )
 }

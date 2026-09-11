@@ -26,7 +26,7 @@ export const data = {
       ],
     },
     {
-      label: "Menus Data",
+      label: "Admin",
       items: [
         {
           name: "Users",
