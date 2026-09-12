@@ -43,6 +43,7 @@
     "./lib/*": "./src/lib/*.ts",
     "./hooks/*": "./src/hooks/*.ts",
     "./components/*": "./src/components/*.tsx",
+    "./data/*": "./src/data/*.tsx",
     "./layout/*": "./src/layout/*.tsx",
     "./profiles/*": "./src/profiles/*.tsx",
     "./auth/*": "./src/auth/*.tsx"
