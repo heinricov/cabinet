@@ -7,7 +7,7 @@ import {
   type DataTableColumnDef,
   type BulkAction,
   toast,
-} from "@workspace/ui/components/data-table"
+} from "@workspace/ui/crud/data-table"
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 import { Checkbox } from "@workspace/ui/components/checkbox"
@@ -33,23 +33,116 @@ type DocumentReceipt = {
   createdAt: string
 }
 
-const statusVariant: Record<DocumentStatus, "default" | "secondary" | "outline"> = {
+const statusVariant: Record<
+  DocumentStatus,
+  "default" | "secondary" | "outline"
+> = {
   Received: "default",
   Pending: "secondary",
   Verified: "outline",
 }
 
 const documents: DocumentReceipt[] = [
-  { id: "p-01", dokId: "PL-HPE-010826", tanggal: "2026-08-01", author: "Andi Wijaya", delivery: "PT HPE Indonesia", qty: 250, status: "Received", createdAt: "2026-08-01" },
-  { id: "p-02", dokId: "PL-HPE-020826", tanggal: "2026-08-02", author: "Maya Putri", delivery: "CV HPE Jaya", qty: 180, status: "Verified", createdAt: "2026-08-02" },
-  { id: "p-03", dokId: "PL-HPE-030826", tanggal: "2026-08-03", author: "Rudi Hermawan", delivery: "PT HPE Abadi", qty: 320, status: "Received", createdAt: "2026-08-03" },
-  { id: "p-04", dokId: "PL-HPE-040826", tanggal: "2026-08-04", author: "Dewi Sari", delivery: "PT HPE Makmur", qty: 90, status: "Pending", createdAt: "2026-08-04" },
-  { id: "p-05", dokId: "PL-HPE-050826", tanggal: "2026-08-05", author: "Andi Wijaya", delivery: "CV HPE Sentosa", qty: 145, status: "Received", createdAt: "2026-08-05" },
-  { id: "p-06", dokId: "PL-HPE-060826", tanggal: "2026-08-06", author: "Maya Putri", delivery: "PT HPE Indonesia", qty: 210, status: "Verified", createdAt: "2026-08-06" },
-  { id: "p-07", dokId: "PL-HPE-070826", tanggal: "2026-08-07", author: "Rudi Hermawan", delivery: "PT HPE Sejahtera", qty: 75, status: "Received", createdAt: "2026-08-07" },
-  { id: "p-08", dokId: "PL-HPE-080826", tanggal: "2026-08-08", author: "Dewi Sari", delivery: "CV HPE Jaya", qty: 160, status: "Pending", createdAt: "2026-08-08" },
-  { id: "p-09", dokId: "PL-HPE-090826", tanggal: "2026-08-09", author: "Andi Wijaya", delivery: "PT HPE Abadi", qty: 280, status: "Received", createdAt: "2026-08-09" },
-  { id: "p-10", dokId: "PL-HPE-100826", tanggal: "2026-08-10", author: "Maya Putri", delivery: "PT HPE Makmur", qty: 130, status: "Verified", createdAt: "2026-08-10" },
+  {
+    id: "p-01",
+    dokId: "PL-HPE-010826",
+    tanggal: "2026-08-01",
+    author: "Andi Wijaya",
+    delivery: "PT HPE Indonesia",
+    qty: 250,
+    status: "Received",
+    createdAt: "2026-08-01",
+  },
+  {
+    id: "p-02",
+    dokId: "PL-HPE-020826",
+    tanggal: "2026-08-02",
+    author: "Maya Putri",
+    delivery: "CV HPE Jaya",
+    qty: 180,
+    status: "Verified",
+    createdAt: "2026-08-02",
+  },
+  {
+    id: "p-03",
+    dokId: "PL-HPE-030826",
+    tanggal: "2026-08-03",
+    author: "Rudi Hermawan",
+    delivery: "PT HPE Abadi",
+    qty: 320,
+    status: "Received",
+    createdAt: "2026-08-03",
+  },
+  {
+    id: "p-04",
+    dokId: "PL-HPE-040826",
+    tanggal: "2026-08-04",
+    author: "Dewi Sari",
+    delivery: "PT HPE Makmur",
+    qty: 90,
+    status: "Pending",
+    createdAt: "2026-08-04",
+  },
+  {
+    id: "p-05",
+    dokId: "PL-HPE-050826",
+    tanggal: "2026-08-05",
+    author: "Andi Wijaya",
+    delivery: "CV HPE Sentosa",
+    qty: 145,
+    status: "Received",
+    createdAt: "2026-08-05",
+  },
+  {
+    id: "p-06",
+    dokId: "PL-HPE-060826",
+    tanggal: "2026-08-06",
+    author: "Maya Putri",
+    delivery: "PT HPE Indonesia",
+    qty: 210,
+    status: "Verified",
+    createdAt: "2026-08-06",
+  },
+  {
+    id: "p-07",
+    dokId: "PL-HPE-070826",
+    tanggal: "2026-08-07",
+    author: "Rudi Hermawan",
+    delivery: "PT HPE Sejahtera",
+    qty: 75,
+    status: "Received",
+    createdAt: "2026-08-07",
+  },
+  {
+    id: "p-08",
+    dokId: "PL-HPE-080826",
+    tanggal: "2026-08-08",
+    author: "Dewi Sari",
+    delivery: "CV HPE Jaya",
+    qty: 160,
+    status: "Pending",
+    createdAt: "2026-08-08",
+  },
+  {
+    id: "p-09",
+    dokId: "PL-HPE-090826",
+    tanggal: "2026-08-09",
+    author: "Andi Wijaya",
+    delivery: "PT HPE Abadi",
+    qty: 280,
+    status: "Received",
+    createdAt: "2026-08-09",
+  },
+  {
+    id: "p-10",
+    dokId: "PL-HPE-100826",
+    tanggal: "2026-08-10",
+    author: "Maya Putri",
+    delivery: "PT HPE Makmur",
+    qty: 130,
+    status: "Verified",
+    createdAt: "2026-08-10",
+  },
 ]
 
 const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
@@ -79,9 +172,7 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
   },
   {
     accessorKey: "dokId",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Dok ID" />
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Dok ID" />,
     filterFn: (row, _id, value: string) => {
       const q = value.toLowerCase()
       return (
@@ -97,30 +188,22 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
   {
     accessorKey: "tanggal",
     sortFn: "datetime",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Tanggal" />
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Tanggal" />,
     cell: ({ row }) => (
-      <span className="text-sm tabular-nums">{formatDate(row.original.tanggal)}</span>
+      <span className="text-sm tabular-nums">
+        {formatDate(row.original.tanggal)}
+      </span>
     ),
   },
   {
     accessorKey: "author",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Author" />
-    ),
-    cell: ({ row }) => (
-      <span className="text-sm">{row.original.author}</span>
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Author" />,
+    cell: ({ row }) => <span className="text-sm">{row.original.author}</span>,
   },
   {
     accessorKey: "delivery",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Delivery" />
-    ),
-    cell: ({ row }) => (
-      <span className="text-sm">{row.original.delivery}</span>
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Delivery" />,
+    cell: ({ row }) => <span className="text-sm">{row.original.delivery}</span>,
   },
   {
     accessorKey: "qty",
@@ -130,7 +213,9 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
       </div>
     ),
     cell: ({ row }) => (
-      <span className="block text-right text-sm tabular-nums">{row.original.qty.toLocaleString()}</span>
+      <span className="block text-right text-sm tabular-nums">
+        {row.original.qty.toLocaleString()}
+      </span>
     ),
   },
   {
@@ -216,11 +301,21 @@ export default function Page() {
         subtitle={`${documents.length} documents`}
         searchPlaceholder="Search documents..."
         searchColumnId="dokId"
-        columnLabels={{ dokId: "Dok ID", tanggal: "Tanggal", author: "Author", delivery: "Delivery", qty: "Qty", status: "Status" }}
+        columnLabels={{
+          dokId: "Dok ID",
+          tanggal: "Tanggal",
+          author: "Author",
+          delivery: "Delivery",
+          qty: "Qty",
+          status: "Status",
+        }}
         addButton={{
           label: "Add Document",
           icon: <Plus className="size-3.5" aria-hidden="true" />,
-          onClick: () => toast("Document added", { description: "New document has been created." }),
+          onClick: () =>
+            toast("Document added", {
+              description: "New document has been created.",
+            }),
         }}
         bulkActions={bulkActions}
         emptyMessage="No documents match your search."

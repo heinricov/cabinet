@@ -7,7 +7,7 @@ import {
   type DataTableColumnDef,
   type BulkAction,
   toast,
-} from "@workspace/ui/components/data-table"
+} from "@workspace/ui/crud/data-table"
 import {
   Avatar,
   AvatarFallback,

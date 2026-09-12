@@ -7,7 +7,7 @@ import {
   type DataTableColumnDef,
   type BulkAction,
   toast,
-} from "@workspace/ui/components/data-table"
+} from "@workspace/ui/crud/data-table"
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 import { Checkbox } from "@workspace/ui/components/checkbox"
@@ -33,23 +33,116 @@ type DocumentReceipt = {
   createdAt: string
 }
 
-const statusVariant: Record<DocumentStatus, "default" | "secondary" | "outline"> = {
+const statusVariant: Record<
+  DocumentStatus,
+  "default" | "secondary" | "outline"
+> = {
   Received: "default",
   Pending: "secondary",
   Verified: "outline",
 }
 
 const documents: DocumentReceipt[] = [
-  { id: "dd-01", dokId: "DO-DUMMY-010826", tanggal: "2026-08-01", author: "Fajar Nugroho", delivery: "PT Dummy Prima", qty: 100, status: "Received", createdAt: "2026-08-01" },
-  { id: "dd-02", dokId: "DO-DUMMY-020826", tanggal: "2026-08-02", author: "Sari Dewi", delivery: "CV Dummy Jaya", qty: 75, status: "Verified", createdAt: "2026-08-02" },
-  { id: "dd-03", dokId: "DO-DUMMY-030826", tanggal: "2026-08-03", author: "Rahmat Hidayat", delivery: "PT Dummy Abadi", qty: 200, status: "Received", createdAt: "2026-08-03" },
-  { id: "dd-04", dokId: "DO-DUMMY-040826", tanggal: "2026-08-04", author: "Fajar Nugroho", delivery: "PT Dummy Makmur", qty: 55, status: "Pending", createdAt: "2026-08-04" },
-  { id: "dd-05", dokId: "DO-DUMMY-050826", tanggal: "2026-08-05", author: "Sari Dewi", delivery: "CV Dummy Sentosa", qty: 130, status: "Received", createdAt: "2026-08-05" },
-  { id: "dd-06", dokId: "DO-DUMMY-060826", tanggal: "2026-08-06", author: "Rahmat Hidayat", delivery: "PT Dummy Prima", qty: 90, status: "Verified", createdAt: "2026-08-06" },
-  { id: "dd-07", dokId: "DO-DUMMY-070826", tanggal: "2026-08-07", author: "Fajar Nugroho", delivery: "PT Dummy Sejahtera", qty: 165, status: "Received", createdAt: "2026-08-07" },
-  { id: "dd-08", dokId: "DO-DUMMY-080826", tanggal: "2026-08-08", author: "Sari Dewi", delivery: "CV Dummy Jaya", qty: 45, status: "Pending", createdAt: "2026-08-08" },
-  { id: "dd-09", dokId: "DO-DUMMY-090826", tanggal: "2026-08-09", author: "Rahmat Hidayat", delivery: "PT Dummy Abadi", qty: 180, status: "Received", createdAt: "2026-08-09" },
-  { id: "dd-10", dokId: "DO-DUMMY-100826", tanggal: "2026-08-10", author: "Fajar Nugroho", delivery: "PT Dummy Makmur", qty: 115, status: "Verified", createdAt: "2026-08-10" },
+  {
+    id: "dd-01",
+    dokId: "DO-DUMMY-010826",
+    tanggal: "2026-08-01",
+    author: "Fajar Nugroho",
+    delivery: "PT Dummy Prima",
+    qty: 100,
+    status: "Received",
+    createdAt: "2026-08-01",
+  },
+  {
+    id: "dd-02",
+    dokId: "DO-DUMMY-020826",
+    tanggal: "2026-08-02",
+    author: "Sari Dewi",
+    delivery: "CV Dummy Jaya",
+    qty: 75,
+    status: "Verified",
+    createdAt: "2026-08-02",
+  },
+  {
+    id: "dd-03",
+    dokId: "DO-DUMMY-030826",
+    tanggal: "2026-08-03",
+    author: "Rahmat Hidayat",
+    delivery: "PT Dummy Abadi",
+    qty: 200,
+    status: "Received",
+    createdAt: "2026-08-03",
+  },
+  {
+    id: "dd-04",
+    dokId: "DO-DUMMY-040826",
+    tanggal: "2026-08-04",
+    author: "Fajar Nugroho",
+    delivery: "PT Dummy Makmur",
+    qty: 55,
+    status: "Pending",
+    createdAt: "2026-08-04",
+  },
+  {
+    id: "dd-05",
+    dokId: "DO-DUMMY-050826",
+    tanggal: "2026-08-05",
+    author: "Sari Dewi",
+    delivery: "CV Dummy Sentosa",
+    qty: 130,
+    status: "Received",
+    createdAt: "2026-08-05",
+  },
+  {
+    id: "dd-06",
+    dokId: "DO-DUMMY-060826",
+    tanggal: "2026-08-06",
+    author: "Rahmat Hidayat",
+    delivery: "PT Dummy Prima",
+    qty: 90,
+    status: "Verified",
+    createdAt: "2026-08-06",
+  },
+  {
+    id: "dd-07",
+    dokId: "DO-DUMMY-070826",
+    tanggal: "2026-08-07",
+    author: "Fajar Nugroho",
+    delivery: "PT Dummy Sejahtera",
+    qty: 165,
+    status: "Received",
+    createdAt: "2026-08-07",
+  },
+  {
+    id: "dd-08",
+    dokId: "DO-DUMMY-080826",
+    tanggal: "2026-08-08",
+    author: "Sari Dewi",
+    delivery: "CV Dummy Jaya",
+    qty: 45,
+    status: "Pending",
+    createdAt: "2026-08-08",
+  },
+  {
+    id: "dd-09",
+    dokId: "DO-DUMMY-090826",
+    tanggal: "2026-08-09",
+    author: "Rahmat Hidayat",
+    delivery: "PT Dummy Abadi",
+    qty: 180,
+    status: "Received",
+    createdAt: "2026-08-09",
+  },
+  {
+    id: "dd-10",
+    dokId: "DO-DUMMY-100826",
+    tanggal: "2026-08-10",
+    author: "Fajar Nugroho",
+    delivery: "PT Dummy Makmur",
+    qty: 115,
+    status: "Verified",
+    createdAt: "2026-08-10",
+  },
 ]
 
 const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
@@ -79,9 +172,7 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
   },
   {
     accessorKey: "dokId",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Dok ID" />
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Dok ID" />,
     filterFn: (row, _id, value: string) => {
       const q = value.toLowerCase()
       return (
@@ -97,30 +188,22 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
   {
     accessorKey: "tanggal",
     sortFn: "datetime",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Tanggal" />
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Tanggal" />,
     cell: ({ row }) => (
-      <span className="text-sm tabular-nums">{formatDate(row.original.tanggal)}</span>
+      <span className="text-sm tabular-nums">
+        {formatDate(row.original.tanggal)}
+      </span>
     ),
   },
   {
     accessorKey: "author",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Author" />
-    ),
-    cell: ({ row }) => (
-      <span className="text-sm">{row.original.author}</span>
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Author" />,
+    cell: ({ row }) => <span className="text-sm">{row.original.author}</span>,
   },
   {
     accessorKey: "delivery",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Delivery" />
-    ),
-    cell: ({ row }) => (
-      <span className="text-sm">{row.original.delivery}</span>
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Delivery" />,
+    cell: ({ row }) => <span className="text-sm">{row.original.delivery}</span>,
   },
   {
     accessorKey: "qty",
@@ -130,7 +213,9 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
       </div>
     ),
     cell: ({ row }) => (
-      <span className="block text-right text-sm tabular-nums">{row.original.qty.toLocaleString()}</span>
+      <span className="block text-right text-sm tabular-nums">
+        {row.original.qty.toLocaleString()}
+      </span>
     ),
   },
   {
@@ -216,11 +301,21 @@ export default function Page() {
         subtitle={`${documents.length} documents`}
         searchPlaceholder="Search documents..."
         searchColumnId="dokId"
-        columnLabels={{ dokId: "Dok ID", tanggal: "Tanggal", author: "Author", delivery: "Delivery", qty: "Qty", status: "Status" }}
+        columnLabels={{
+          dokId: "Dok ID",
+          tanggal: "Tanggal",
+          author: "Author",
+          delivery: "Delivery",
+          qty: "Qty",
+          status: "Status",
+        }}
         addButton={{
           label: "Add Document",
           icon: <Plus className="size-3.5" aria-hidden="true" />,
-          onClick: () => toast("Document added", { description: "New document has been created." }),
+          onClick: () =>
+            toast("Document added", {
+              description: "New document has been created.",
+            }),
         }}
         bulkActions={bulkActions}
         emptyMessage="No documents match your search."

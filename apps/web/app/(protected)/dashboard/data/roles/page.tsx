@@ -7,7 +7,7 @@ import {
   type DataTableColumnDef,
   type BulkAction,
   toast,
-} from "@workspace/ui/components/data-table"
+} from "@workspace/ui/crud/data-table"
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 import { Checkbox } from "@workspace/ui/components/checkbox"
@@ -37,14 +37,70 @@ const typeVariant: Record<RoleType, "default" | "secondary"> = {
 }
 
 const roles: Role[] = [
-  { id: "r-01", name: "Owner", description: "Full access to all resources and settings", type: "System", memberCount: 1, createdAt: "2026-01-15" },
-  { id: "r-02", name: "Admin", description: "Manage members, roles, and workspace settings", type: "System", memberCount: 3, createdAt: "2026-01-15" },
-  { id: "r-03", name: "Editor", description: "Create and edit content, manage published items", type: "System", memberCount: 8, createdAt: "2026-01-15" },
-  { id: "r-04", name: "Viewer", description: "Read-only access to all content", type: "System", memberCount: 12, createdAt: "2026-01-15" },
-  { id: "r-05", name: "Billing Admin", description: "Manage billing, subscriptions, and invoices", type: "Custom", memberCount: 2, createdAt: "2026-03-10" },
-  { id: "r-06", name: "Content Manager", description: "Full control over content creation and publishing workflow", type: "Custom", memberCount: 4, createdAt: "2026-04-05" },
-  { id: "r-07", name: "Support Agent", description: "Access to customer support tools and ticket management", type: "Custom", memberCount: 5, createdAt: "2026-05-12" },
-  { id: "r-08", name: "Analytics Viewer", description: "View-only access to analytics dashboards and reports", type: "Custom", memberCount: 6, createdAt: "2026-06-01" },
+  {
+    id: "r-01",
+    name: "Owner",
+    description: "Full access to all resources and settings",
+    type: "System",
+    memberCount: 1,
+    createdAt: "2026-01-15",
+  },
+  {
+    id: "r-02",
+    name: "Admin",
+    description: "Manage members, roles, and workspace settings",
+    type: "System",
+    memberCount: 3,
+    createdAt: "2026-01-15",
+  },
+  {
+    id: "r-03",
+    name: "Editor",
+    description: "Create and edit content, manage published items",
+    type: "System",
+    memberCount: 8,
+    createdAt: "2026-01-15",
+  },
+  {
+    id: "r-04",
+    name: "Viewer",
+    description: "Read-only access to all content",
+    type: "System",
+    memberCount: 12,
+    createdAt: "2026-01-15",
+  },
+  {
+    id: "r-05",
+    name: "Billing Admin",
+    description: "Manage billing, subscriptions, and invoices",
+    type: "Custom",
+    memberCount: 2,
+    createdAt: "2026-03-10",
+  },
+  {
+    id: "r-06",
+    name: "Content Manager",
+    description: "Full control over content creation and publishing workflow",
+    type: "Custom",
+    memberCount: 4,
+    createdAt: "2026-04-05",
+  },
+  {
+    id: "r-07",
+    name: "Support Agent",
+    description: "Access to customer support tools and ticket management",
+    type: "Custom",
+    memberCount: 5,
+    createdAt: "2026-05-12",
+  },
+  {
+    id: "r-08",
+    name: "Analytics Viewer",
+    description: "View-only access to analytics dashboards and reports",
+    type: "Custom",
+    memberCount: 6,
+    createdAt: "2026-06-01",
+  },
 ]
 
 const roleColumns: DataTableColumnDef<Role>[] = [
@@ -74,9 +130,7 @@ const roleColumns: DataTableColumnDef<Role>[] = [
   },
   {
     accessorKey: "name",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Role" />
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Role" />,
     filterFn: (row, _id, value: string) => {
       const q = value.toLowerCase()
       return (
@@ -86,8 +140,12 @@ const roleColumns: DataTableColumnDef<Role>[] = [
     },
     cell: ({ row }) => (
       <div className="min-w-0">
-        <p className="truncate text-sm leading-tight font-medium">{row.original.name}</p>
-        <p className="truncate text-xs text-muted-foreground">{row.original.description}</p>
+        <p className="truncate text-sm leading-tight font-medium">
+          {row.original.name}
+        </p>
+        <p className="truncate text-xs text-muted-foreground">
+          {row.original.description}
+        </p>
       </div>
     ),
   },
@@ -107,9 +165,7 @@ const roleColumns: DataTableColumnDef<Role>[] = [
   },
   {
     accessorKey: "memberCount",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Members" />
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Members" />,
     cell: ({ row }) => (
       <span className="text-sm tabular-nums">{row.original.memberCount}</span>
     ),
@@ -197,11 +253,17 @@ export default function Page() {
         subtitle={`${roles.length} roles configured`}
         searchPlaceholder="Search roles..."
         searchColumnId="name"
-        columnLabels={{ name: "Role", type: "Type", memberCount: "Members", createdAt: "Created" }}
+        columnLabels={{
+          name: "Role",
+          type: "Type",
+          memberCount: "Members",
+          createdAt: "Created",
+        }}
         addButton={{
           label: "New Role",
           icon: <Plus className="size-3.5" aria-hidden="true" />,
-          onClick: () => toast("Role created", { description: "New role has been added." }),
+          onClick: () =>
+            toast("Role created", { description: "New role has been added." }),
         }}
         bulkActions={bulkActions}
         emptyMessage="No roles match your search."

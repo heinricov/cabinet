@@ -7,7 +7,7 @@ import {
   type DataTableColumnDef,
   type BulkAction,
   toast,
-} from "@workspace/ui/components/data-table"
+} from "@workspace/ui/crud/data-table"
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 import { Checkbox } from "@workspace/ui/components/checkbox"
@@ -33,23 +33,116 @@ type DocumentReceipt = {
   createdAt: string
 }
 
-const statusVariant: Record<DocumentStatus, "default" | "secondary" | "outline"> = {
+const statusVariant: Record<
+  DocumentStatus,
+  "default" | "secondary" | "outline"
+> = {
   Received: "default",
   Pending: "secondary",
   Verified: "outline",
 }
 
 const documents: DocumentReceipt[] = [
-  { id: "i-01", dokId: "INV-010826", tanggal: "2026-08-01", author: "Lestari Budiman", delivery: "PT Globalindo", qty: 300, status: "Received", createdAt: "2026-08-01" },
-  { id: "i-02", dokId: "INV-020826", tanggal: "2026-08-02", author: "Hendra Wijaya", delivery: "CV Dhamar Mas", qty: 150, status: "Verified", createdAt: "2026-08-02" },
-  { id: "i-03", dokId: "INV-030826", tanggal: "2026-08-03", author: "Putri Ayu", delivery: "PT Bahari Lestari", qty: 420, status: "Received", createdAt: "2026-08-03" },
-  { id: "i-04", dokId: "INV-040826", tanggal: "2026-08-04", author: "Lestari Budiman", delivery: "PT Citra Abadi", qty: 75, status: "Pending", createdAt: "2026-08-04" },
-  { id: "i-05", dokId: "INV-050826", tanggal: "2026-08-05", author: "Hendra Wijaya", delivery: "CV Dhamar Mas", qty: 220, status: "Received", createdAt: "2026-08-05" },
-  { id: "i-06", dokId: "INV-060826", tanggal: "2026-08-06", author: "Putri Ayu", delivery: "PT Globalindo", qty: 185, status: "Verified", createdAt: "2026-08-06" },
-  { id: "i-07", dokId: "INV-070826", tanggal: "2026-08-07", author: "Lestari Budiman", delivery: "PT Bahari Lestari", qty: 95, status: "Received", createdAt: "2026-08-07" },
-  { id: "i-08", dokId: "INV-080826", tanggal: "2026-08-08", author: "Hendra Wijaya", delivery: "PT Citra Abadi", qty: 260, status: "Pending", createdAt: "2026-08-08" },
-  { id: "i-09", dokId: "INV-090826", tanggal: "2026-08-09", author: "Putri Ayu", delivery: "CV Dhamar Mas", qty: 140, status: "Received", createdAt: "2026-08-09" },
-  { id: "i-10", dokId: "INV-100826", tanggal: "2026-08-10", author: "Lestari Budiman", delivery: "PT Globalindo", qty: 350, status: "Verified", createdAt: "2026-08-10" },
+  {
+    id: "i-01",
+    dokId: "INV-010826",
+    tanggal: "2026-08-01",
+    author: "Lestari Budiman",
+    delivery: "PT Globalindo",
+    qty: 300,
+    status: "Received",
+    createdAt: "2026-08-01",
+  },
+  {
+    id: "i-02",
+    dokId: "INV-020826",
+    tanggal: "2026-08-02",
+    author: "Hendra Wijaya",
+    delivery: "CV Dhamar Mas",
+    qty: 150,
+    status: "Verified",
+    createdAt: "2026-08-02",
+  },
+  {
+    id: "i-03",
+    dokId: "INV-030826",
+    tanggal: "2026-08-03",
+    author: "Putri Ayu",
+    delivery: "PT Bahari Lestari",
+    qty: 420,
+    status: "Received",
+    createdAt: "2026-08-03",
+  },
+  {
+    id: "i-04",
+    dokId: "INV-040826",
+    tanggal: "2026-08-04",
+    author: "Lestari Budiman",
+    delivery: "PT Citra Abadi",
+    qty: 75,
+    status: "Pending",
+    createdAt: "2026-08-04",
+  },
+  {
+    id: "i-05",
+    dokId: "INV-050826",
+    tanggal: "2026-08-05",
+    author: "Hendra Wijaya",
+    delivery: "CV Dhamar Mas",
+    qty: 220,
+    status: "Received",
+    createdAt: "2026-08-05",
+  },
+  {
+    id: "i-06",
+    dokId: "INV-060826",
+    tanggal: "2026-08-06",
+    author: "Putri Ayu",
+    delivery: "PT Globalindo",
+    qty: 185,
+    status: "Verified",
+    createdAt: "2026-08-06",
+  },
+  {
+    id: "i-07",
+    dokId: "INV-070826",
+    tanggal: "2026-08-07",
+    author: "Lestari Budiman",
+    delivery: "PT Bahari Lestari",
+    qty: 95,
+    status: "Received",
+    createdAt: "2026-08-07",
+  },
+  {
+    id: "i-08",
+    dokId: "INV-080826",
+    tanggal: "2026-08-08",
+    author: "Hendra Wijaya",
+    delivery: "PT Citra Abadi",
+    qty: 260,
+    status: "Pending",
+    createdAt: "2026-08-08",
+  },
+  {
+    id: "i-09",
+    dokId: "INV-090826",
+    tanggal: "2026-08-09",
+    author: "Putri Ayu",
+    delivery: "CV Dhamar Mas",
+    qty: 140,
+    status: "Received",
+    createdAt: "2026-08-09",
+  },
+  {
+    id: "i-10",
+    dokId: "INV-100826",
+    tanggal: "2026-08-10",
+    author: "Lestari Budiman",
+    delivery: "PT Globalindo",
+    qty: 350,
+    status: "Verified",
+    createdAt: "2026-08-10",
+  },
 ]
 
 const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
@@ -79,9 +172,7 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
   },
   {
     accessorKey: "dokId",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Dok ID" />
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Dok ID" />,
     filterFn: (row, _id, value: string) => {
       const q = value.toLowerCase()
       return (
@@ -97,30 +188,22 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
   {
     accessorKey: "tanggal",
     sortFn: "datetime",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Tanggal" />
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Tanggal" />,
     cell: ({ row }) => (
-      <span className="text-sm tabular-nums">{formatDate(row.original.tanggal)}</span>
+      <span className="text-sm tabular-nums">
+        {formatDate(row.original.tanggal)}
+      </span>
     ),
   },
   {
     accessorKey: "author",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Author" />
-    ),
-    cell: ({ row }) => (
-      <span className="text-sm">{row.original.author}</span>
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Author" />,
+    cell: ({ row }) => <span className="text-sm">{row.original.author}</span>,
   },
   {
     accessorKey: "delivery",
-    header: ({ column }) => (
-      <SortableHeader column={column} label="Delivery" />
-    ),
-    cell: ({ row }) => (
-      <span className="text-sm">{row.original.delivery}</span>
-    ),
+    header: ({ column }) => <SortableHeader column={column} label="Delivery" />,
+    cell: ({ row }) => <span className="text-sm">{row.original.delivery}</span>,
   },
   {
     accessorKey: "qty",
@@ -130,7 +213,9 @@ const documentColumns: DataTableColumnDef<DocumentReceipt>[] = [
       </div>
     ),
     cell: ({ row }) => (
-      <span className="block text-right text-sm tabular-nums">{row.original.qty.toLocaleString()}</span>
+      <span className="block text-right text-sm tabular-nums">
+        {row.original.qty.toLocaleString()}
+      </span>
     ),
   },
   {
@@ -216,11 +301,21 @@ export default function Page() {
         subtitle={`${documents.length} documents`}
         searchPlaceholder="Search documents..."
         searchColumnId="dokId"
-        columnLabels={{ dokId: "Dok ID", tanggal: "Tanggal", author: "Author", delivery: "Delivery", qty: "Qty", status: "Status" }}
+        columnLabels={{
+          dokId: "Dok ID",
+          tanggal: "Tanggal",
+          author: "Author",
+          delivery: "Delivery",
+          qty: "Qty",
+          status: "Status",
+        }}
         addButton={{
           label: "Add Document",
           icon: <Plus className="size-3.5" aria-hidden="true" />,
-          onClick: () => toast("Document added", { description: "New document has been created." }),
+          onClick: () =>
+            toast("Document added", {
+              description: "New document has been created.",
+            }),
         }}
         bulkActions={bulkActions}
         emptyMessage="No documents match your search."
