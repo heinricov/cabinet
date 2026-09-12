@@ -19,6 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu"
 import { Ellipsis, Pencil, Trash, Shield, Plus } from "lucide-react"
+import { redirect } from "next/navigation"
 
 type RoleType = "System" | "Custom"
 
@@ -262,8 +263,7 @@ export default function Page() {
         addButton={{
           label: "New Role",
           icon: <Plus className="size-3.5" aria-hidden="true" />,
-          onClick: () =>
-            toast("Role created", { description: "New role has been added." }),
+          onClick: () => redirect("/dashboard/data/roles/add"),
         }}
         bulkActions={bulkActions}
         emptyMessage="No roles match your search."

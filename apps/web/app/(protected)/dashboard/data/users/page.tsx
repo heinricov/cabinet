@@ -24,6 +24,7 @@ import {
   DropdownMenuTrigger,
 } from "@workspace/ui/components/dropdown-menu"
 import { Ellipsis, User, Pencil, Trash, UserCog, Plus } from "lucide-react"
+import { redirect } from "next/navigation"
 
 type Status = "Active" | "Invited" | "Inactive"
 type Role = "Admin" | "Editor" | "Viewer"
@@ -436,10 +437,7 @@ export default function Page() {
         addButton={{
           label: "Invite",
           icon: <Plus className="size-3.5" aria-hidden="true" />,
-          onClick: () =>
-            toast("Invite sent", {
-              description: "Invitation link copied to clipboard.",
-            }),
+          onClick: () => redirect("/dashboard/data/users/add"),
         }}
         bulkActions={bulkActions}
         emptyMessage="No users match your search."
