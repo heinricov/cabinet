@@ -2,11 +2,9 @@
 
 import { useState } from "react"
 import { cn } from "@workspace/ui/lib/utils"
-import { Button } from "@workspace/ui/components/button"
-import { User, Shield, Bell, CreditCard } from "lucide-react"
+import { User, Shield, Bell } from "lucide-react"
 import { AccountSection } from "@workspace/ui/profiles/account-section"
-import { BillingSection } from "@workspace/ui/profiles/billing-section"
-import { NotificationsSection } from "@workspace/ui/profiles/notifications-section"
+import { GeneralsSection } from "@workspace/ui/profiles/general-section"
 import { ProfileSection } from "@workspace/ui/profiles/profile-section"
 
 /** Props a call site may pass through to an icon. */
@@ -19,19 +17,14 @@ const sections = [
     icon: (p: IconProps) => <User {...p} />,
   },
   {
-    id: "account",
-    label: "Account",
-    icon: (p: IconProps) => <Shield {...p} />,
-  },
-  {
-    id: "notifications",
-    label: "Notifications",
+    id: "general",
+    label: "General",
     icon: (p: IconProps) => <Bell {...p} />,
   },
   {
-    id: "billing",
-    label: "Billing",
-    icon: (p: IconProps) => <CreditCard {...p} />,
+    id: "account",
+    label: "Account",
+    icon: (p: IconProps) => <Shield {...p} />,
   },
 ]
 
@@ -74,14 +67,8 @@ export function ProfilePage() {
 
           <div className="min-w-0">
             {active === "profile" && <ProfileSection />}
-            {active === "notifications" && <NotificationsSection />}
+            {active === "general" && <GeneralsSection />}
             {active === "account" && <AccountSection />}
-            {active === "billing" && <BillingSection />}
-
-            <div className="mt-8 flex justify-end gap-2 border-t border-border pt-5">
-              <Button variant="outline">Cancel</Button>
-              <Button>Save changes</Button>
-            </div>
           </div>
         </div>
       </div>

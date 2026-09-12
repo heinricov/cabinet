@@ -2,45 +2,55 @@
 
 import { Field, FieldLabel } from "@workspace/ui/components/field"
 import { Input } from "@workspace/ui/components/input"
-import { Separator } from "@workspace/ui/components/separator"
-import { Switch } from "@workspace/ui/components/switch"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@workspace/ui/components/card"
+import { Button } from "@workspace/ui/components/button"
 
 export function AccountSection() {
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-4">
-        <h2 className="font-heading text-sm font-semibold tracking-tight">
-          Password
-        </h2>
-        <Field>
-          <FieldLabel htmlFor="current">Current password</FieldLabel>
-          <Input
-            id="current"
-            type="password"
-            placeholder="••••••••"
-          />
-        </Field>
-        <Field>
-          <FieldLabel htmlFor="new-password">New password</FieldLabel>
-          <Input
-            id="new-password"
-            type="password"
-            placeholder="••••••••"
-          />
-        </Field>
-      </div>
-      <Separator />
-      <div className="flex items-center justify-between gap-4">
-        <div className="flex flex-col gap-0.5">
-          <span className="text-sm font-medium">
-            Two-factor authentication
-          </span>
-          <span className="text-xs text-muted-foreground">
-            Add an extra layer of security to your account.
-          </span>
+      <Card>
+        <CardHeader>
+          <CardTitle>Account</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <Field>
+            <FieldLabel htmlFor="name">User Name</FieldLabel>
+            <Input id="username" defaultValue="Elena Duarte" />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="email">Email</FieldLabel>
+            <Input id="email" type="email" defaultValue="elena@acme.com" />
+          </Field>
+        </CardContent>
+        <div className="mt-2 flex justify-end gap-2 p-2">
+          <Button variant="outline">Cancel</Button>
+          <Button>Save changes</Button>
         </div>
-        <Switch aria-label="Two-factor authentication" />
-      </div>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>New Password</CardTitle>
+        </CardHeader>
+        <CardContent className="flex flex-col gap-4">
+          <Field>
+            <FieldLabel htmlFor="current">Current password</FieldLabel>
+            <Input id="current" type="password" placeholder="••••••••" />
+          </Field>
+          <Field>
+            <FieldLabel htmlFor="new-password">New password</FieldLabel>
+            <Input id="new-password" type="password" placeholder="••••••••" />
+          </Field>
+        </CardContent>
+        <div className="mt-2 flex justify-end gap-2 p-2">
+          <Button variant="outline">Cancel</Button>
+          <Button>Save changes</Button>
+        </div>
+      </Card>
     </div>
   )
 }
