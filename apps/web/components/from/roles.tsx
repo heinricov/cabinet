@@ -1,10 +1,11 @@
 import { FormInput } from "@workspace/ui/data/form-input"
+import { FieldLayout } from "@workspace/ui/data/form-layout"
 import { FormTextarea } from "@workspace/ui/data/form-textarea"
 import { FileText, User } from "lucide-react"
 
 export function RolesFrom() {
   return (
-    <>
+    <FieldLayout classFieldLayout="w-full max-w-xl">
       <div className="space-y-2">
         <FormInput
           id="role"
@@ -27,6 +28,6 @@ export function RolesFrom() {
           rows={5}
         />
       </div>
-    </>
+    </FieldLayout>
   )
 }

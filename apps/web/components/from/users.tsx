@@ -3,11 +3,12 @@ import { useState } from "react"
 import { FormInput } from "@workspace/ui/data/form-input"
 import { FormSelect } from "@workspace/ui/data/form-select"
 import { Mail, User } from "lucide-react"
+import { FieldLayout } from "@workspace/ui/data/form-layout"
 
 export function UsersFrom() {
   const [value, setValue] = useState("")
   return (
-    <>
+    <FieldLayout classFieldLayout="w-full max-w-xl">
       <div className="space-y-2">
         <FormInput
           id="username"
@@ -49,6 +50,6 @@ export function UsersFrom() {
           onValueChange={(value) => setValue(value as string)}
         />
       </div>
-    </>
+    </FieldLayout>
   )
 }
