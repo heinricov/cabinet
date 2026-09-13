@@ -1,5 +1,3 @@
-<div align="center">
-
 # 🚀 DTM
 
 **A modern, scalable monorepo template powered by Next.js, Turborepo & shadcn/ui**
@@ -410,5 +408,3 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 **Made with ❤️ by [heinricov](https://github.com/heinricov)**
 
 ⭐ If you find this template useful, please consider giving it a star!
-
-</div>
